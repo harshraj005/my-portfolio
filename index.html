@@ -3,558 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Raj | Futuristic Software Engineer</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Harsh Raj | Backend Engineer & Core Java Specialist</title>
+    <meta name="description" content="Portfolio of Harsh Raj, Backend engineer focused on Core Java, multi-threading, and data security.">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-dark: #020205;
-            --accent-cyan: #00f2ff;
-            --accent-magenta: #ff00ea;
-            --glass-bg: rgba(10, 10, 20, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --cyber-glow: 0 0 20px rgba(0, 242, 255, 0.15);
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            margin: 0;
-        }
-
-        h1, h2, h3, h4, .nav-link, .btn-cyber, .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-        }
-
-        /* 3D Background Canvas */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* Premium Glass Card */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 4px;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-            transform: translateX(-100%);
-            transition: 0.6s;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 242, 255, 0.4);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 242, 255, 0.1);
-        }
-
-        .glass-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        /* Navbar */
-        .navbar {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1rem 0;
-        }
-
-        .nav-link {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            color: var(--text-muted) !important;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-cyan) !important;
-            text-shadow: 0 0 8px var(--accent-cyan);
-        }
-
-        /* Hero */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 15vw, 8rem);
-            font-weight: 800;
-            line-height: 0.85;
-            letter-spacing: -0.05em;
-            margin-bottom: 1.5rem;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-
-        /* Buttons */
-        .btn-cyber {
-            padding: 12px 32px;
-            border: 1px solid var(--accent-cyan);
-            background: transparent;
-            color: var(--accent-cyan);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            transition: 0.4s;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px;
-        }
-
-        .btn-cyber:hover {
-            background: var(--accent-cyan);
-            color: black;
-            box-shadow: 0 0 20px var(--accent-cyan);
-        }
-
-        .btn-resume {
-            border-color: white;
-            color: white;
-        }
-
-        .btn-resume:hover {
-            background: white;
-            color: black;
-            box-shadow: 0 0 20px white;
-        }
-
-        /* Section Titles */
-        .section-header {
-            margin-bottom: 6rem;
-            border-left: 4px solid var(--accent-cyan);
-            padding-left: 2rem;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.7rem;
-            color: var(--accent-cyan);
-            letter-spacing: 0.5em;
-        }
-
-        /* Skill Pill */
-        .skill-pill {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            margin: 4px;
-            font-weight: 600;
-        }
-
-        /* Project & Exp Links */
-        .github-link {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            transition: 0.3s;
-        }
-
-        .github-link:hover {
-            color: var(--accent-cyan);
-            transform: scale(1.1);
-        }
-
-        .badge-ongoing {
-            font-size: 0.6rem;
-            border: 1px solid var(--accent-magenta);
-            color: var(--accent-magenta);
-            padding: 2px 10px;
-            letter-spacing: 0.2em;
-            animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
-        }
-
-        footer {
-            padding: 8rem 0 4rem;
-            background: #000;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-        }
-
-        .coord-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            opacity: 0.5;
-            letter-spacing: 0.3em;
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Intro Screen -->
+    <div id="intro-screen">
+        <div class="intro-content">
+            <div class="loader"></div>
+            <h1 class="intro-text">INITIALIZING...</h1>
+        </div>
+    </div>
 
+    <!-- Background Canvas for Three.js -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-white" href="#">
-                <span style="color: var(--accent-cyan);">HARSH RAJ</span>
-            </a>
-            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link text-white btn px-3 ms-lg-3" href="./Resume_Harsh_Raj.pdf" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Resume</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Overlay UI -->
+    <main class="content-wrapper">
+        <!-- Header / Nav -->
+        <header>
+            <div class="logo">HR<span class="dot">.</span></div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section container">
-        <div data-aos="fade-up" data-aos-duration="1500">
-            <h1 class="hero-title">SOFTWARE<br><span class="gradient-text">ENGINEER</span></h1>
-            <p class="hero-subtitle">
-                Expertise in Android Development, Cloud Infrastructure, and Cyber Security. <br>
-                Building high-performance neural architectures and secure digital experiences.
-            </p>
-            <div class="d-flex flex-wrap justify-content-center">
-                <a href="#projects" class="btn-cyber">View Projects</a>
-                <a href="./Resume_Harsh_Raj_Java).pdf" class="btn-cyber btn-resume"><i class="fas fa-download me-2"></i> Download Resume</a>
+        <!-- Hero Section -->
+        <section id="hero" class="glass-panel">
+            <h1 class="glitch" data-text="Harsh Raj">Harsh Raj</h1>
+            <h2>Backend Engineer <span class="highlight">|</span> Core Java Specialist</h2>
+            <p>Combining rigorous academic background with practical success in scalable system design, cryptography, and concurrent data structures.</p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn primary">View Projects</a>
+                <a href="#contact" class="btn secondary">Get in Touch</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="container py-5">
-        <div class="section-header" data-aos="fade-right">
-            <h2 class="section-title">01_MANIFESTO</h2>
-            <div class="section-subtitle">BIOGRAPHY & CORE STACK</div>
-        </div>
-        <div class="row g-4">
-            <div class="col-lg-7" data-aos="fade-up">
-                <div class="glass-card p-5 h-100">
-                    <p class="fs-5 text-muted leading-relaxed">
-                        I specialize in creating seamless, data-driven applications. My focus lies at the intersection of performance optimization and robust security protocols. Currently pursuing B.Tech in CSE, I leverage both modern frameworks and foundational algorithms.
-                    </p>
-                    <div class="row g-4 mt-4">
-                        <div class="col-md-6">
-                            <h6 class="text-cyan small fw-bold mb-3" style="color: var(--accent-cyan);">EDUCATION</h6>
-                            <p class="text-white mb-0 fw-bold">B.Tech CSE</p>
-                            <span class="text-muted small">Shobhit Institute, Meerut</span>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 class="text-magenta small fw-bold mb-3" style="color: var(--accent-magenta);">ACCOLADE</h6>
-                            <p class="text-white mb-0 fw-bold">Gold Medalist</p>
-                            <span class="text-muted small">Diploma in CSE, RKDF University</span>
-                        </div>
+        <!-- About & Skills Section -->
+        <section id="about" class="glass-panel">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="tags">
+                        <span>Core Java</span><span>C</span><span>C++</span><span>Python</span><span>SQL</span><span>Kotlin</span><span>JavaScript</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & Core</h3>
+                    <div class="tags">
+                        <span>Multithreading</span><span>Concurrency</span><span>Collections</span><span>OOP</span><span>Memory Management</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Security & Crypto</h3>
+                    <div class="tags">
+                        <span>AES/RSA</span><span>Key Exchange</span><span>Data Security</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="glass-card p-5 h-100">
-                    <h5 class="text-white fw-bold mb-4">SYSTEM_SKILLS</h5>
-                    <div class="mb-4">
-                        <label class="text-muted small d-block mb-2">LANGUAGES</label>
-                        <div class="skill-pill">Kotlin</div>
-                        <div class="skill-pill">Java</div>
-                        <div class="skill-pill">Python</div>
-                        <div class="skill-pill">JS</div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-muted small d-block mb-2">FRAMEWORKS</label>
-                        <div class="skill-pill">Android</div>
-                        <div class="skill-pill">React Native</div>
-                        <div class="skill-pill">React.js</div>
-                    </div>
-                    <div>
-                        <label class="text-muted small d-block mb-2">INFRASTRUCTURE</label>
-                        <div class="skill-pill">Supabase</div>
-                        <div class="skill-pill">Firebase</div>
-                        <div class="skill-pill">Postman</div>
-                        <div class="skill-pill">Linux</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="container py-5">
-        <div class="section-header" data-aos="fade-right">
-            <h2 class="section-title">02_EXPERIENCE</h2>
-            <div class="section-subtitle">PROFESSIONAL CONTRIBUTIONS</div>
-        </div>
-        <div class="row g-4">
-            <!-- Experience Card 1 -->
-            <div class="col-12" data-aos="fade-up">
-                <div class="glass-card p-5">
-                    <div class="row align-items-center">
-                        <div class="col-lg-9">
-                            <div class="d-flex align-items-center gap-3 mb-3">
-                                <h4 class="fw-bold mb-0">Open Source Contributor</h4>
-                                <span class="skill-pill" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">SSoC 2025</span>
-                            </div>
-                            <p class="text-muted">
-                                Achieved 'Advanced' status by maintaining a 100% resolution rate. Focused on security optimization and UI enhancements for community-driven tools.
-                            </p>
-                            <div class="mt-4">
-                                <span class="badge rounded-pill bg-dark border border-secondary px-3 py-2 me-2">RSA Bug Resolution</span>
-                                <span class="badge rounded-pill bg-dark border border-secondary px-3 py-2 me-2">Caesar Cipher UI</span>
-                                <span class="badge rounded-pill bg-dark border border-secondary px-3 py-2 me-2">Event Mappr Architect</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 text-lg-end mt-4 mt-lg-0">
-                            <a href="https://github.com/harshraj005" target="_blank" class="github-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
+        <!-- Projects Section -->
+        <section id="projects" class="glass-panel">
+            <h2 class="section-title">Engineering Projects</h2>
+            <div class="project-list">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Thread-Safe LRU Cache</h3>
+                        <a href="https://github.com/harshraj005/LRU_Cache_System_Using_Java" target="_blank" class="github-link">GitHub ↗</a>
                     </div>
+                    <div class="project-tech"><span>Core Java</span><span>Multithreading</span><span>Concurrency</span></div>
+                    <ul>
+                        <li>O(1) in-memory LRU cache with HashMap + doubly-linked list.</li>
+                        <li>ReentrantReadWriteLock for concurrent access & AtomicLong for stats.</li>
+                        <li>Daemon sweeper thread for TTL expiry without blocking hot paths.</li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-    </section>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Hybrid AES-RSA Encryption Engine</h3>
+                        <a href="https://github.com/harshraj005/Java-AES-Encryption-Engine" target="_blank" class="github-link">GitHub ↗</a>
+                    </div>
+                    <div class="project-tech"><span>Core Java</span><span>Cryptography</span><span>File I/O</span></div>
+                    <ul>
+                        <li>Robust cryptographic engine securing large files using AES and RSA.</li>
+                        <li>Implemented secure padding and resolved IV vulnerabilities.</li>
+                        <li>Optimized file parsing to prevent memory overflow.</li>
+                    </ul>
+                </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="container py-5">
-        <div class="section-header" data-aos="fade-right">
-            <h2 class="section-title">03_DEPLOYMENTS</h2>
-            <div class="section-subtitle">INDEPENDENT PROJECTS</div>
-        </div>
-        <div class="row g-4">
-            <!-- Project: Aegis AI -->
-            <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-                <div class="glass-card p-4 h-100 d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-4">
-                        <i class="fas fa-brain fs-3 text-magenta" style="color: var(--accent-magenta);"></i>
-                        <span class="badge-ongoing">ONGOING</span>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Smart Meeting Room Scheduler</h3>
+                        <a href="https://github.com/harshraj005/Meeting_Room_Scheduler_Using_Java/" target="_blank" class="github-link">GitHub ↗</a>
                     </div>
-                    <h5 class="fw-bold">Aegis AI</h5>
-                    <p class="text-muted small mb-4">Android app utilizing binary classification to detect and blur explicit content on-screen in real-time.</p>
-                    <div class="mt-auto pt-4 border-top border-white border-opacity-5 d-flex justify-content-between align-items-center">
-                        <div class="skill-pill m-0">Kotlin</div>
-                        <a href="https://github.com/harshraj005" target="_blank" class="github-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
+                    <div class="project-tech"><span>Core Java</span><span>OOP</span><span>Collections</span></div>
+                    <ul>
+                        <li>Terminal-based app to manage availability and resolve conflicts.</li>
+                        <li>Efficient in-memory data retrieval using Java Collections.</li>
+                    </ul>
                 </div>
             </div>
-            <!-- Project: SiteGuard X -->
-            <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="glass-card p-4 h-100 d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-4">
-                        <i class="fas fa-shield-alt fs-3 text-cyan" style="color: var(--accent-cyan);"></i>
-                        <span class="coord-text" style="opacity: 1;">V1.0 STABLE</span>
-                    </div>
-                    <h5 class="fw-bold">SiteGuard X</h5>
-                    <p class="text-muted small mb-4">Automated CyberSecurity tool capable of detecting SQLi, XSS, and IDOR vulnerabilities.</p>
-                    <div class="mt-auto pt-4 border-top border-white border-opacity-5 d-flex justify-content-between align-items-center">
-                        <div class="skill-pill m-0">Python/Node</div>
-                        <a href="https://github.com/harshraj005" target="_blank" class="github-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Project: MemorySphere -->
-            <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                <div class="glass-card p-4 h-100 d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-4">
-                        <i class="fas fa-layer-group fs-3 text-white"></i>
-                        <span class="coord-text" style="opacity: 1;">BETA</span>
-                    </div>
-                    <h5 class="fw-bold">MemorySphere</h5>
-                    <p class="text-muted small mb-4">Productivity tool with smart memory organization and natural language input logic.</p>
-                    <div class="mt-auto pt-4 border-top border-white border-opacity-5 d-flex justify-content-between align-items-center">
-                        <div class="skill-pill m-0">React Native</div>
-                        <a href="https://github.com/harshraj005" target="_blank" class="github-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        </section>
 
-
-    <!-- Research Section -->
-    <section id="research" class="container py-5">
-        <div class="section-header" data-aos="fade-right">
-            <h2 class="section-title">04_RESEARCH</h2>
-            <div class="section-subtitle">PUBLICATIONS & ANALYTICS</div>
-        </div>
-        <div class="glass-card p-5" data-aos="fade-up">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <span class="skill-pill mb-3" style="color: var(--accent-magenta); border-color: var(--accent-magenta);">JOURNAL_ENTRY // 2025</span>
-                    <h3 class="fw-bold mb-3">Integrating Vedic Mathematics in Post-Quantum Cryptography</h3>
-                    <p class="text-muted fs-5 mb-0">Presented at <span class="text-white">Indian Knowledge from Vedic Insights</span>, SIET Meerut. Exploring lattice-based cryptographic efficiency.</p>
+        <!-- Achievements & Open Source -->
+        <section id="achievements" class="glass-panel">
+            <h2 class="section-title">Milestones</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Open Source Contributor</h3>
+                        <p class="timeline-date">SSoC 2025</p>
+                        <p>Resolved critical RSA encryption bugs and achieved 'Advanced' contributor status.</p>
+                    </div>
                 </div>
-                <div class="col-md-4 text-md-end mt-4 mt-md-0">
-                    <a href="#" class="btn-cyber btn-resume">Access Abstract</a>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Research Publication</h3>
+                        <p>Co-Authored “Integrating Vedic Mathematics in Post-Quantum Cryptography.”</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Hackathon Winner</h3>
+                        <p>Smart India Hackathon 2025 Internal Winner; Runner-up Reverse Coding Competition 2024.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container py-5">
-        <div class="glass-card p-5 text-center" data-aos="flip-up">
-            <h2 class="section-title mb-4">CONNECT_SYSTEM</h2>
-            <p class="hero-subtitle mb-5">Currently open to internship opportunities and high-performance collaborations.</p>
-            <div class="d-flex flex-wrap justify-content-center gap-4">
-                <a href="mailto:harshishu2005@gmail.com" class="btn-cyber">Transmit Email</a>
-                <a href="https://linkedin.com/in/harshraj0005" target="_blank" class="btn-cyber">LinkedIn Sync</a>
+        <!-- Contact Section -->
+        <section id="contact" class="glass-panel">
+            <h2 class="section-title">Initialize Connection</h2>
+            <div class="contact-links">
+                <a href="mailto:harshishu2005@gmail.com" class="contact-btn">
+                    <span class="icon">✉</span> harshishu2005@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/harshraj0005" target="_blank" class="contact-btn">
+                    <span class="icon">in</span> LinkedIn
+                </a>
+                <a href="https://github.com/harshraj005" target="_blank" class="contact-btn">
+                    <span class="icon">gh</span> GitHub
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <footer>
+            <p>© 2026 Harsh Raj. Engineered with precision.</p>
+        </footer>
+    </main>
 
-    <footer>
-        <div class="container">
-            <div class="mb-5">
-                <a href="https://github.com/harshraj005" target="_blank" class="github-link mx-3"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/harshraj0005" target="_blank" class="github-link mx-3"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:harshishu2005@gmail.com" class="github-link mx-3"><i class="fas fa-envelope"></i></a>
-            </div>
-            <div class="coord-text">© 2025 HARSH RAJ // PORTFOLIO_BUILD_V5.0.0</div>
-            <div class="coord-text">LOCATION: 28.9845 N, 77.7064 E</div>
-        </div>
-    </footer>
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">↑</button>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        AOS.init({ duration: 1000, once: true });
-
-        // --- Premium 3D Three.js Scene ---
-        const canvas = document.getElementById('bg-canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // Particle System
-        const particlesCount = 2000;
-        const posArray = new Float32Array(particlesCount * 3);
-        for(let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 15;
-        }
-        const particlesGeometry = new THREE.BufferGeometry();
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.005,
-            color: '#00f2ff',
-            transparent: true,
-            opacity: 0.5
-        });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        // Perspective Grid
-        const gridHelper = new THREE.GridHelper(40, 80, 0x00f2ff, 0x050510);
-        gridHelper.position.y = -4;
-        gridHelper.material.opacity = 0.15;
-        gridHelper.material.transparent = true;
-        scene.add(gridHelper);
-
-        camera.position.z = 5;
-
-        let mouseX = 0;
-        let mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) - 0.5;
-            mouseY = (e.clientY / window.innerHeight) - 0.5;
-        });
-
-        const animate = () => {
-            requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.0007;
-            gridHelper.position.z += 0.008;
-            if (gridHelper.position.z > 0.5) gridHelper.position.z = 0;
-
-            particlesMesh.position.x += (mouseX * 0.2 - particlesMesh.position.x) * 0.05;
-            particlesMesh.position.y += (-mouseY * 0.2 - particlesMesh.position.y) * 0.05;
-
-            renderer.render(scene, camera);
-        };
-        window.onload = animate;
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="three-bg.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
-
